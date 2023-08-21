@@ -1,0 +1,45 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "piral"
+  ],
+  "dependencies": {
+    "blazor": "^7.0.8",
+    "piral": "1.0.1",
+    "piral-base": "1.0.1",
+    "piral-blazor": "1.0.1",
+    "piral-core": "1.0.1",
+    "piral-translate": "1.0.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-router": "^5",
+    "react-router-dom": "^5"
+  },
+  "scripts": {
+    "start": "piral debug",
+    "build": "piral build",
+    "postinstall": "piral declaration"
+  },
+  "app": "./src/index.html",
+  "types": "dist/index.d.ts",
+  "importmap": {
+    "imports": {},
+    "inherit": [
+      "piral-base",
+      "piral-core",
+      "piral"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-router": "^5",
+    "@types/react-router-dom": "^5",
+    "piral-cli": "1.0.1",
+    "piral-cli-webpack5": "1.0.1",
+    "typescript": "latest"
+  }
+}

@@ -1,0 +1,49 @@
+@page "/example"
+@inject IBrowserViewportService _browserViewportService
+@implements IDisposable
+
+<div>
+    <p style="margin-bottom: 20px;">Resize the window from very small to big. -> The Box should channge.</p>
+    @if (_isMini)
+    {
+        <div style="padding: 20px; background: silver; text-align: center; font-weight: bold; color: red;">
+            The Window is small
+        </div>
+    }
+    else
+    {
+        <div style="padding: 20px; background: silver; text-align: center; font-weight: bold; color: blue;">
+            The Window is big
+        </div>
+    }
+</div>
+
+@code {
+
+    bool _isMini { get; set; } = false;
+    Guid _browserViewportId = Guid.NewGuid();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await _browserViewportService.SubscribeAsync(_browserViewportId, breakpoint =>
+            {
+                switch ((int)breakpoint.Breakpoint)
+                {
+                    case (int)Breakpoint.Xs:
+                        _isMini = true;
+                        break;
+                    default:
+                        _isMini = false;
+                        break;
+                }
+                InvokeAsync(StateHasChanged);
+            });
+        }
+    }
+    public void Dispose()
+    {
+        _browserViewportService.UnsubscribeAsync(_browserViewportId);
+    }
+}

@@ -1,0 +1,13 @@
+@attribute [PiralAppRoot]
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+@ChildContent
+
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
